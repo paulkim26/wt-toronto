@@ -15,33 +15,27 @@
 	"nodes":[
 		{
 			"mesh":0,
-			"name":"mdl_zesty_condo_screen"
+			"name":"mdl_zesty_condo_screen_black"
 		}
 	],
 	"materials":[
 		{
 			"doubleSided":true,
-			"emissiveFactor":[
-				0.8007433414459229,
-				0.6950905323028564,
-				0
-			],
-			"name":"screenglow",
+			"name":"black screen",
 			"pbrMetallicRoughness":{
 				"baseColorFactor":[
-					0.8007433414459229,
-					0.6950905323028564,
+					0,
+					0,
 					0,
 					1
 				],
-				"metallicFactor":0,
-				"roughnessFactor":0
+				"metallicFactor":0
 			}
 		}
 	],
 	"meshes":[
 		{
-			"name":"Cube.004",
+			"name":"Cube.003",
 			"primitives":[
 				{
 					"attributes":{
@@ -59,7 +53,7 @@
 		{
 			"bufferView":0,
 			"componentType":5126,
-			"count":52,
+			"count":4,
 			"max":[
 				0.5,
 				0.5,
@@ -75,52 +69,52 @@
 		{
 			"bufferView":1,
 			"componentType":5126,
-			"count":52,
+			"count":4,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":2,
 			"componentType":5126,
-			"count":52,
+			"count":4,
 			"type":"VEC2"
 		},
 		{
 			"bufferView":3,
 			"componentType":5123,
-			"count":216,
+			"count":6,
 			"type":"SCALAR"
 		}
 	],
 	"bufferViews":[
 		{
 			"buffer":0,
-			"byteLength":624,
+			"byteLength":48,
 			"byteOffset":0,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":624,
-			"byteOffset":624,
+			"byteLength":48,
+			"byteOffset":48,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":416,
-			"byteOffset":1248,
+			"byteLength":32,
+			"byteOffset":96,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":432,
-			"byteOffset":1664,
+			"byteLength":12,
+			"byteOffset":128,
 			"target":34963
 		}
 	],
 	"buffers":[
 		{
-			"byteLength":2096,
-			"uri":"mdl_zesty_condo_screen.bin"
+			"byteLength":140,
+			"uri":"mdl_zesty_condo_screen_black.bin"
 		}
 	]
 }
