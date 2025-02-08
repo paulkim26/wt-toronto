@@ -328,7 +328,7 @@ function powerUpdate()
 	powerDisplaySplit3:setValue(powerEnergy)
 
 	-- debug
-	powerDisplay()
+	-- powerDisplay()
 end
 
 -- Print power grid values (debug)
@@ -347,6 +347,7 @@ end
 
 if callType == LuaCallType.Init then
 	-- Globals
+	moduleLoaded = false
 	powerRows = 8
 	powerColumns = 8
 	powerCells = {}
@@ -484,7 +485,9 @@ if callType == LuaCallType.Init then
 elseif callType == LuaCallType.Slot then
 	for _, powerSlot in ipairs(powerSlots) do
 		if context == powerSlot.element then
-			api.setLockValue(zesty_sfx_connectoron, 1, 1)
+			if moduleLoaded == true then
+				api.setLockValue(zesty_sfx_connectoron, 1, 1) -- Don't play sound until module is loaded
+			end
 			powerUpdate()
 		end
 	end
@@ -493,6 +496,8 @@ elseif callType == LuaCallType.Unlock then
 	if context == zesty_powerslot_remove then
 		api.setLockValue(zesty_sfx_connectoroff, 1, 1)
 		powerUpdate()
+	elseif context == zesty_show_module then
+		moduleLoaded = true
 	end
 
 end

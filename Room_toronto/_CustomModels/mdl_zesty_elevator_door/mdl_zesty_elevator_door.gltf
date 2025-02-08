@@ -111,48 +111,48 @@
 		{
 			"bufferView":0,
 			"componentType":5126,
-			"count":176,
+			"count":140,
 			"max":[
 				0.5184881091117859,
 				2.401648998260498,
 				-0.4796372950077057
 			],
 			"min":[
-				-0.5184881091117859,
+				0.033242978155612946,
 				0,
-				-0.7314872741699219
+				-0.7517353892326355
 			],
 			"type":"VEC3"
 		},
 		{
 			"bufferView":1,
 			"componentType":5126,
-			"count":176,
+			"count":140,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":2,
 			"componentType":5126,
-			"count":176,
+			"count":140,
 			"type":"VEC2"
 		},
 		{
 			"bufferView":3,
 			"componentType":5123,
-			"count":564,
+			"count":396,
 			"type":"SCALAR"
 		},
 		{
 			"bufferView":4,
 			"componentType":5126,
-			"count":572,
+			"count":308,
 			"max":[
 				0.45894670486450195,
 				2.401648759841919,
 				-0.5308969616889954
 			],
 			"min":[
-				-0.45894670486450195,
+				0,
 				0,
 				-0.7448077201843262
 			],
@@ -161,32 +161,32 @@
 		{
 			"bufferView":5,
 			"componentType":5126,
-			"count":572,
+			"count":308,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":6,
 			"componentType":5126,
-			"count":572,
+			"count":308,
 			"type":"VEC2"
 		},
 		{
 			"bufferView":7,
 			"componentType":5123,
-			"count":1614,
+			"count":840,
 			"type":"SCALAR"
 		},
 		{
 			"bufferView":8,
 			"componentType":5126,
-			"count":56,
+			"count":28,
 			"max":[
 				0.4362720549106598,
 				1.7805768251419067,
 				-0.5441670417785645
 			],
 			"min":[
-				-0.4362720549106598,
+				0.09940877556800842,
 				1.0625814199447632,
 				-0.7244427800178528
 			],
@@ -195,99 +195,99 @@
 		{
 			"bufferView":9,
 			"componentType":5126,
-			"count":56,
+			"count":28,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":10,
 			"componentType":5126,
-			"count":56,
+			"count":28,
 			"type":"VEC2"
 		},
 		{
 			"bufferView":11,
 			"componentType":5123,
-			"count":144,
+			"count":72,
 			"type":"SCALAR"
 		}
 	],
 	"bufferViews":[
 		{
 			"buffer":0,
-			"byteLength":2112,
+			"byteLength":1680,
 			"byteOffset":0,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":2112,
-			"byteOffset":2112,
+			"byteLength":1680,
+			"byteOffset":1680,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":1408,
-			"byteOffset":4224,
+			"byteLength":1120,
+			"byteOffset":3360,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":1128,
-			"byteOffset":5632,
+			"byteLength":792,
+			"byteOffset":4480,
 			"target":34963
 		},
 		{
 			"buffer":0,
-			"byteLength":6864,
-			"byteOffset":6760,
+			"byteLength":3696,
+			"byteOffset":5272,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":6864,
-			"byteOffset":13624,
+			"byteLength":3696,
+			"byteOffset":8968,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":4576,
-			"byteOffset":20488,
+			"byteLength":2464,
+			"byteOffset":12664,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":3228,
-			"byteOffset":25064,
+			"byteLength":1680,
+			"byteOffset":15128,
 			"target":34963
 		},
 		{
 			"buffer":0,
-			"byteLength":672,
-			"byteOffset":28292,
+			"byteLength":336,
+			"byteOffset":16808,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":672,
-			"byteOffset":28964,
+			"byteLength":336,
+			"byteOffset":17144,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":448,
-			"byteOffset":29636,
+			"byteLength":224,
+			"byteOffset":17480,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":288,
-			"byteOffset":30084,
+			"byteLength":144,
+			"byteOffset":17704,
 			"target":34963
 		}
 	],
 	"buffers":[
 		{
-			"byteLength":30372,
+			"byteLength":17848,
 			"uri":"mdl_zesty_elevator_door.bin"
 		}
 	]

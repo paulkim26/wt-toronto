@@ -597,7 +597,7 @@ elseif callType == LuaCallType.Unlock then
 			zesty_condo_screen_east
 		}, true, true)
 
-		activate({zesty_digit_3_parent,}, false, true) -- Hide power display
+		activate({zesty_digit_3_parent}, false, true) -- Hide power display
 	end
 
 elseif callType == LuaCallType.SlidableMoved then
