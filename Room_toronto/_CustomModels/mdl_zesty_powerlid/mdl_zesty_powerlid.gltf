@@ -3,6 +3,9 @@
 		"generator":"Khronos glTF Blender I/O v4.3.47",
 		"version":"2.0"
 	},
+	"extensionsUsed":[
+		"KHR_materials_emissive_strength"
+	],
 	"scene":0,
 	"scenes":[
 		{
@@ -15,40 +18,52 @@
 	"nodes":[
 		{
 			"mesh":0,
-			"name":"mdl_zesty_gear_planet"
+			"name":"mdl_zesty_powerlid"
 		}
 	],
 	"materials":[
 		{
 			"doubleSided":true,
-			"name":"gold",
+			"name":"brushed-chrome",
 			"pbrMetallicRoughness":{
 				"baseColorFactor":[
-					0.8016340732574463,
-					0.5009856224060059,
-					0.032477349042892456,
+					0.800000011920929,
+					0.800000011920929,
+					0.800000011920929,
 					1
 				],
-				"roughnessFactor":0.10000000149011612
+				"metallicFactor":0.800000011920929,
+				"roughnessFactor":0.25
 			}
 		},
 		{
 			"doubleSided":true,
-			"name":"gold-dark",
+			"emissiveFactor":[
+				1,
+				0.7230560183525085,
+				0.0024283980019390583
+			],
+			"extensions":{
+				"KHR_materials_emissive_strength":{
+					"emissiveStrength":2
+				}
+			},
+			"name":"toronto-sign-light-yellow",
 			"pbrMetallicRoughness":{
 				"baseColorFactor":[
-					0.28291746973991394,
-					0.16348318755626678,
-					0.019985130056738853,
+					1,
+					0.7230560183525085,
+					0.0024283980019390583,
 					1
 				],
-				"roughnessFactor":0.10000000149011612
+				"metallicFactor":0,
+				"roughnessFactor":0.5
 			}
 		}
 	],
 	"meshes":[
 		{
-			"name":"Cube.015",
+			"name":"Circle.004",
 			"primitives":[
 				{
 					"attributes":{
@@ -75,126 +90,126 @@
 		{
 			"bufferView":0,
 			"componentType":5126,
-			"count":1152,
+			"count":48,
 			"max":[
-				1.4551384449005127,
-				0.07513804733753204,
-				1.455136775970459
+				0.39961355924606323,
+				0.4526614546775818,
+				0.012532360851764679
 			],
 			"min":[
-				-1.455137014389038,
-				-0.07513804733753204,
-				-1.4551377296447754
+				-0.39961355924606323,
+				-0.45266157388687134,
+				-0.012532359920442104
 			],
 			"type":"VEC3"
 		},
 		{
 			"bufferView":1,
 			"componentType":5126,
-			"count":1152,
+			"count":48,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":2,
 			"componentType":5126,
-			"count":1152,
+			"count":48,
 			"type":"VEC2"
 		},
 		{
 			"bufferView":3,
 			"componentType":5123,
-			"count":2640,
+			"count":84,
 			"type":"SCALAR"
 		},
 		{
 			"bufferView":4,
 			"componentType":5126,
-			"count":800,
+			"count":8,
 			"max":[
-				1.3248623609542847,
-				0.07513804733753204,
-				1.32486093044281
+				0.35951709747314453,
+				0.4125649929046631,
+				0.012532356195151806
 			],
 			"min":[
-				-1.3248611688613892,
-				-0.07513804733753204,
-				-1.324861764907837
+				-0.35951709747314453,
+				-0.41256511211395264,
+				0.012532264925539494
 			],
 			"type":"VEC3"
 		},
 		{
 			"bufferView":5,
 			"componentType":5126,
-			"count":800,
+			"count":8,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":6,
 			"componentType":5126,
-			"count":800,
+			"count":8,
 			"type":"VEC2"
 		},
 		{
 			"bufferView":7,
 			"componentType":5123,
-			"count":1914,
+			"count":24,
 			"type":"SCALAR"
 		}
 	],
 	"bufferViews":[
 		{
 			"buffer":0,
-			"byteLength":13824,
+			"byteLength":576,
 			"byteOffset":0,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":13824,
-			"byteOffset":13824,
+			"byteLength":576,
+			"byteOffset":576,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":9216,
-			"byteOffset":27648,
+			"byteLength":384,
+			"byteOffset":1152,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":5280,
-			"byteOffset":36864,
+			"byteLength":168,
+			"byteOffset":1536,
 			"target":34963
 		},
 		{
 			"buffer":0,
-			"byteLength":9600,
-			"byteOffset":42144,
+			"byteLength":96,
+			"byteOffset":1704,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":9600,
-			"byteOffset":51744,
+			"byteLength":96,
+			"byteOffset":1800,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":6400,
-			"byteOffset":61344,
+			"byteLength":64,
+			"byteOffset":1896,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":3828,
-			"byteOffset":67744,
+			"byteLength":48,
+			"byteOffset":1960,
 			"target":34963
 		}
 	],
 	"buffers":[
 		{
-			"byteLength":71572,
-			"uri":"mdl_zesty_gear_planet.bin"
+			"byteLength":2008,
+			"uri":"mdl_zesty_powerlid.bin"
 		}
 	]
 }

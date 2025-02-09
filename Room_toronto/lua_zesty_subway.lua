@@ -87,6 +87,7 @@ end
  -- Start "WINER" animation
 function startWinner()
 	if winner == 0 then
+		api.setLockValue(zesty_trophydoor, 1, 1)
 		api.setLockValue(zesty_winner_exitzoom, 1, 1)
 		api.activateSwitch(zesty_winner_anim)
 		winner = 1
