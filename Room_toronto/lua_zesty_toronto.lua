@@ -82,7 +82,7 @@ function calcGearDegrees(deltaSeconds)
 	zesty_gear_planet3.transform.rotation = Quaternion.Euler(0, gearPlanetDegrees, 0)
 	zesty_gear_ring_parent.transform.rotation = Quaternion.Euler(0, gearRingDegrees, 0)
 
-	zesty_wheel.transform.rotation = Quaternion.Euler(0, 90, 90 - gearSunDegrees)
+	--zesty_wheel.transform.rotation = Quaternion.Euler(0, 90, 90 - gearSunDegrees)
 end
 
 -- Events
