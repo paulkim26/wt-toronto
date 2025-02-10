@@ -51,7 +51,6 @@ function LetterSlider:setValue(value)
 				local index = (self.value + indexOffset) % sliderSegments
 				api.setLockValue(display, index, 1)
 			end
-			checkSliders()
 		end
 
 		return true
@@ -177,6 +176,8 @@ if callType == LuaCallType.Init then
 elseif callType == LuaCallType.Unlock then
 	if context == zesty_winner_lock then
 		displayWinner()
+	elseif context == zesty_subwayslider_moved then
+		checkSliders()
 	end
 
 elseif callType == LuaCallType.SlidableMoved then

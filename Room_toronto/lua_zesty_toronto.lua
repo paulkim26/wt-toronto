@@ -1,5 +1,9 @@
 -- Functions
 
+function round(num)
+    return math.floor(num + 0.5)
+end
+
 -- Initialize gear angles + rotation speed
 function initGears()
 	gearRotationFactor = 0				-- Base factor that all gear rotation is based on
@@ -91,11 +95,10 @@ if callType == LuaCallType.Init then
 	lastUpdateTime = 0
 	deltaIntervalSeconds = 1 / 60 -- Interval of time between updates to gears
 	gearRotationFactorMax = 2
+	sliderIncrement = 0
 
 	initGears()
 	calcGearDegrees(0)
-
-elseif callType == LuaCallType.Unlock then
 
 elseif callType == LuaCallType.Update then
 	local currentTime = Time.time
@@ -108,8 +111,19 @@ elseif callType == LuaCallType.Update then
 
 elseif callType == LuaCallType.SlidableMoved then
 	if context == zesty_slider then
-		gearControlPosition = (zesty_slider.value - 0.5) * 2
-		gearTargetDegrees = nil -- Override target angle
+		local newSliderIncrement = round((zesty_slider.value - 0.5) * 4)
+
+		if sliderIncrement != newSliderIncrement then
+			if newSliderIncrement == 0 then
+				api.setLockValue(zesty_sfx_rotation_winddown, 1, 1)
+			else
+				api.setLockValue(zesty_sfx_rotation_windup, 1, 1)
+			end
+
+			sliderIncrement = newSliderIncrement
+			gearControlPosition = sliderIncrement * 0.5
+			gearTargetDegrees = nil -- Override target angle
+		end
 	end
 
 elseif callType == LuaCallType.SwitchDone then
