@@ -254,6 +254,47 @@
 				"metallicFactor":0,
 				"roughnessFactor":0.5
 			}
+		},
+		{
+			"doubleSided":true,
+			"name":"raccoon-grey",
+			"pbrMetallicRoughness":{
+				"baseColorFactor":[
+					0.800000011920929,
+					0.800000011920929,
+					0.800000011920929,
+					1
+				],
+				"roughnessFactor":0.3352601230144501
+			}
+		},
+		{
+			"doubleSided":true,
+			"name":"raccoon-black",
+			"pbrMetallicRoughness":{
+				"baseColorFactor":[
+					0,
+					0,
+					0,
+					1
+				],
+				"metallicFactor":0,
+				"roughnessFactor":0.20000000298023224
+			}
+		},
+		{
+			"doubleSided":true,
+			"name":"raccoon-white",
+			"pbrMetallicRoughness":{
+				"baseColorFactor":[
+					0.800000011920929,
+					0.800000011920929,
+					0.800000011920929,
+					1
+				],
+				"metallicFactor":0,
+				"roughnessFactor":0.20000000298023224
+			}
 		}
 	],
 	"meshes":[
@@ -403,6 +444,33 @@
 					},
 					"indices":63,
 					"material":15
+				},
+				{
+					"attributes":{
+						"POSITION":64,
+						"NORMAL":65,
+						"TEXCOORD_0":66
+					},
+					"indices":67,
+					"material":16
+				},
+				{
+					"attributes":{
+						"POSITION":68,
+						"NORMAL":69,
+						"TEXCOORD_0":70
+					},
+					"indices":71,
+					"material":17
+				},
+				{
+					"attributes":{
+						"POSITION":72,
+						"NORMAL":73,
+						"TEXCOORD_0":74
+					},
+					"indices":75,
+					"material":18
 				}
 			]
 		}
@@ -964,6 +1032,108 @@
 			"componentType":5123,
 			"count":516,
 			"type":"SCALAR"
+		},
+		{
+			"bufferView":64,
+			"componentType":5126,
+			"count":305,
+			"max":[
+				-1.5584385395050049,
+				2.1120452880859375,
+				2.6293303966522217
+			],
+			"min":[
+				-3.0777108669281006,
+				0,
+				0.7427772283554077
+			],
+			"type":"VEC3"
+		},
+		{
+			"bufferView":65,
+			"componentType":5126,
+			"count":305,
+			"type":"VEC3"
+		},
+		{
+			"bufferView":66,
+			"componentType":5126,
+			"count":305,
+			"type":"VEC2"
+		},
+		{
+			"bufferView":67,
+			"componentType":5123,
+			"count":387,
+			"type":"SCALAR"
+		},
+		{
+			"bufferView":68,
+			"componentType":5126,
+			"count":79,
+			"max":[
+				-1.549864649772644,
+				2.1120452880859375,
+				2.366689443588257
+			],
+			"min":[
+				-2.5662026405334473,
+				0,
+				0.7427772283554077
+			],
+			"type":"VEC3"
+		},
+		{
+			"bufferView":69,
+			"componentType":5126,
+			"count":79,
+			"type":"VEC3"
+		},
+		{
+			"bufferView":70,
+			"componentType":5126,
+			"count":79,
+			"type":"VEC2"
+		},
+		{
+			"bufferView":71,
+			"componentType":5123,
+			"count":105,
+			"type":"SCALAR"
+		},
+		{
+			"bufferView":72,
+			"componentType":5126,
+			"count":86,
+			"max":[
+				-1.7149930000305176,
+				1.7029045820236206,
+				2.575911283493042
+			],
+			"min":[
+				-2.4631056785583496,
+				0,
+				1.0853815078735352
+			],
+			"type":"VEC3"
+		},
+		{
+			"bufferView":73,
+			"componentType":5126,
+			"count":86,
+			"type":"VEC3"
+		},
+		{
+			"bufferView":74,
+			"componentType":5126,
+			"count":86,
+			"type":"VEC2"
+		},
+		{
+			"bufferView":75,
+			"componentType":5123,
+			"count":96,
+			"type":"SCALAR"
 		}
 	],
 	"bufferViews":[
@@ -1350,6 +1520,78 @@
 			"byteLength":1032,
 			"byteOffset":234760,
 			"target":34963
+		},
+		{
+			"buffer":0,
+			"byteLength":3660,
+			"byteOffset":235792,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":3660,
+			"byteOffset":239452,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":2440,
+			"byteOffset":243112,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":774,
+			"byteOffset":245552,
+			"target":34963
+		},
+		{
+			"buffer":0,
+			"byteLength":948,
+			"byteOffset":246328,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":948,
+			"byteOffset":247276,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":632,
+			"byteOffset":248224,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":210,
+			"byteOffset":248856,
+			"target":34963
+		},
+		{
+			"buffer":0,
+			"byteLength":1032,
+			"byteOffset":249068,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":1032,
+			"byteOffset":250100,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":688,
+			"byteOffset":251132,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":192,
+			"byteOffset":251820,
+			"target":34963
 		}
 	],
 	"samplers":[
@@ -1360,7 +1602,7 @@
 	],
 	"buffers":[
 		{
-			"byteLength":235792,
+			"byteLength":252012,
 			"uri":"mdl_zesty_room_static.bin"
 		}
 	]
