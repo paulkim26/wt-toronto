@@ -55,9 +55,9 @@
 	],
 	"images":[
 		{
-			"mimeType":"image/png",
+			"mimeType":"image/jpeg",
 			"name":"tx_zesty_standee",
-			"uri":"tx_zesty_standee.png"
+			"uri":"tx_zesty_standee.jpg"
 		}
 	],
 	"accessors":[
