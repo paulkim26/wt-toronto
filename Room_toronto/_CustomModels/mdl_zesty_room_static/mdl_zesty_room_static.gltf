@@ -2040,7 +2040,7 @@
 		{
 			"bufferView":132,
 			"componentType":5126,
-			"count":163,
+			"count":167,
 			"max":[
 				5.195038795471191,
 				0,
@@ -2048,7 +2048,7 @@
 			],
 			"min":[
 				1.505947232246399,
-				-0.026799827814102173,
+				-0.15941807627677917,
 				-4.79958963394165
 			],
 			"type":"VEC3"
@@ -2056,19 +2056,19 @@
 		{
 			"bufferView":133,
 			"componentType":5126,
-			"count":163,
+			"count":167,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":134,
 			"componentType":5126,
-			"count":163,
+			"count":167,
 			"type":"VEC2"
 		},
 		{
 			"bufferView":135,
 			"componentType":5123,
-			"count":324,
+			"count":330,
 			"type":"SCALAR"
 		}
 	],
@@ -2867,26 +2867,26 @@
 		},
 		{
 			"buffer":0,
-			"byteLength":1956,
+			"byteLength":2004,
 			"byteOffset":597132,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":1956,
-			"byteOffset":599088,
+			"byteLength":2004,
+			"byteOffset":599136,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":1304,
-			"byteOffset":601044,
+			"byteLength":1336,
+			"byteOffset":601140,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":648,
-			"byteOffset":602348,
+			"byteLength":660,
+			"byteOffset":602476,
 			"target":34963
 		}
 	],
@@ -2898,7 +2898,7 @@
 	],
 	"buffers":[
 		{
-			"byteLength":602996,
+			"byteLength":603136,
 			"uri":"mdl_zesty_room_static.bin"
 		}
 	]

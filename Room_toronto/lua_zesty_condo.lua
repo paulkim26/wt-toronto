@@ -301,8 +301,27 @@ function updateCondos()
 	end
 
 	if southMatched and westMatched and eastMatched then
-		-- TODO
+		api.setLockValue(zesty_condo_complete, 1, 1)
 	end
+end
+
+function complete()
+	if win then
+		return false
+	end
+
+	activate({
+		zesty_token_parent
+	}, true, true)
+
+	local northWestCondo = condos[1][1]
+
+	northWestCondo:setRailNorth(false)
+	northWestCondo:setRailSouth(false)
+	northWestCondo:setRailEast(false)
+	northWestCondo:setRailWest(false)
+
+	win = true
 end
 
 -- Return whether two 2D tables have the same values.
@@ -366,11 +385,14 @@ function printTable(table)
 end
 
 if callType == LuaCallType.Init then
+	win = false
+
 	activate({
 		zesty_condo_pillars_parent,
 		zesty_condo_screen_west,
 		zesty_condo_screen_south,
-		zesty_condo_screen_east
+		zesty_condo_screen_east,
+		zesty_token_parent
 	}, false, true) -- Hide pillars @ room start
 
 	condos = {
@@ -598,6 +620,8 @@ elseif callType == LuaCallType.Unlock then
 		}, true, true)
 
 		activate({zesty_digit_3_parent}, false, true) -- Hide power display
+	elseif context == zesty_condo_complete then
+		complete()
 	end
 
 elseif callType == LuaCallType.SlidableMoved then
