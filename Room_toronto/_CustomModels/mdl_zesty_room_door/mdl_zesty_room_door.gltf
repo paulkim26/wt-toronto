@@ -99,7 +99,7 @@
 		{
 			"bufferView":0,
 			"componentType":5126,
-			"count":62,
+			"count":104,
 			"max":[
 				4.51427698135376,
 				3.249999761581421,
@@ -115,25 +115,25 @@
 		{
 			"bufferView":1,
 			"componentType":5126,
-			"count":62,
+			"count":104,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":2,
 			"componentType":5126,
-			"count":62,
+			"count":104,
 			"type":"VEC2"
 		},
 		{
 			"bufferView":3,
 			"componentType":5123,
-			"count":132,
+			"count":216,
 			"type":"SCALAR"
 		},
 		{
 			"bufferView":4,
 			"componentType":5126,
-			"count":4,
+			"count":6,
 			"max":[
 				4.337404727935791,
 				3.1557607650756836,
@@ -149,69 +149,69 @@
 		{
 			"bufferView":5,
 			"componentType":5126,
-			"count":4,
+			"count":6,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":6,
 			"componentType":5126,
-			"count":4,
+			"count":6,
 			"type":"VEC2"
 		},
 		{
 			"bufferView":7,
 			"componentType":5123,
-			"count":6,
+			"count":12,
 			"type":"SCALAR"
 		}
 	],
 	"bufferViews":[
 		{
 			"buffer":0,
-			"byteLength":744,
+			"byteLength":1248,
 			"byteOffset":0,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":744,
-			"byteOffset":744,
+			"byteLength":1248,
+			"byteOffset":1248,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":496,
-			"byteOffset":1488,
+			"byteLength":832,
+			"byteOffset":2496,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":264,
-			"byteOffset":1984,
+			"byteLength":432,
+			"byteOffset":3328,
 			"target":34963
 		},
 		{
 			"buffer":0,
-			"byteLength":48,
-			"byteOffset":2248,
+			"byteLength":72,
+			"byteOffset":3760,
+			"target":34962
+		},
+		{
+			"buffer":0,
+			"byteLength":72,
+			"byteOffset":3832,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":48,
-			"byteOffset":2296,
+			"byteOffset":3904,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":32,
-			"byteOffset":2344,
-			"target":34962
-		},
-		{
-			"buffer":0,
-			"byteLength":12,
-			"byteOffset":2376,
+			"byteLength":24,
+			"byteOffset":3952,
 			"target":34963
 		}
 	],
@@ -223,7 +223,7 @@
 	],
 	"buffers":[
 		{
-			"byteLength":2388,
+			"byteLength":3976,
 			"uri":"mdl_zesty_room_door.bin"
 		}
 	]

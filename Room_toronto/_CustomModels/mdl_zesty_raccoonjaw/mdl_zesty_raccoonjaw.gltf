@@ -24,9 +24,9 @@
 			"name":"raccoon-grey",
 			"pbrMetallicRoughness":{
 				"baseColorFactor":[
-					0.25,
-					0.25,
-					0.25,
+					0.9548557996749878,
+					0.9548557996749878,
+					0.9548557996749878,
 					1
 				],
 				"roughnessFactor":0.10000000149011612
