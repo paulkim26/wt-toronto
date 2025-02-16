@@ -324,7 +324,6 @@ function powerUpdate()
 
 	powerDisplay0:setValue(powerEnergy)
 	powerDisplaySplit1:setValue(powerEnergy)
-	powerDisplaySplit2:setValue(powerEnergy)
 	powerDisplaySplit3:setValue(powerEnergy)
 
 	-- debug
@@ -360,14 +359,6 @@ if callType == LuaCallType.Init then
 		zesty_digit_1_slash,
 		zesty_digit_1_button,
 		11
-	)
-
-	powerDisplaySplit2 = PowerDisplaySplit.new(
-		PowerDisplay.new(zesty_digit_2a_10, zesty_digit_2a_1, powerEnergy),
-		PowerDisplay.new(zesty_digit_2b_10, zesty_digit_2b_1, powerEnergy),
-		zesty_digit_2_slash,
-		zesty_digit_2_button,
-		15
 	)
 
 	powerDisplaySplit3 = PowerDisplaySplit.new(
