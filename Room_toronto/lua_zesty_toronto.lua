@@ -4,11 +4,44 @@ function round(num)
     return math.floor(num + 0.5)
 end
 
+--[[
+	Custom activator to programatically use.
+	Works by setting the activator's attributes on-demand and then enacting it.
+	Requires a spare visibility activator to be present in the room.
+
+	Parameters:
+		targets (element[]) - Array of element names.
+			Ex: { target1, target2 }
+		enable (bool) - Whether to enable or disable.
+		targetObject (bool) - Whether to target whole object.
+		targetRenderer (bool) - Whether to target object renderer.
+		targetCollider (bool) - Whether to target object collider.
+]]
+function activate(targets, enable, targetObject, targetRenderer, targetCollider)
+	if enable then
+		zesty_condo_activator.type = (enable and zesty_condo_activator.ActivatorType.enable) or zesty_condo_activator.ActivatorType.disable
+	else
+		zesty_condo_activator.type = zesty_condo_activator.ActivatorType.disable
+	end
+
+	zesty_condo_activator.targetObject = targetObject or true
+	zesty_condo_activator.targetRenderer = targetRenderer or false
+	zesty_condo_activator.targetCollider = targetCollider or false
+
+	-- Convert list of targets to game objects
+	local gameObjects = {}
+	for i, obj in ipairs(targets) do
+		gameObjects[i] = obj.gameObject
+	end
+	zesty_condo_activator.keys = gameObjects
+
+	api.toggleActivator(zesty_condo_activator)
+end
+
 -- Initialize gear angles + rotation speed
 function initGears()
 	gearRotationFactor = 0				-- Base factor that all gear rotation is based on
 	gearControlPosition = 0				-- Slider that controls rotation
-	gearTargetDegrees = nil				-- If set, rotate to this angle
 
 	gearSunDegrees = 11.25				-- Angle of the central "sun" gear
 	gearPlanetDegrees = 360 / 32 / 2	-- Angle of the 3 "planet" gears
@@ -29,34 +62,21 @@ function angleDelta(angle, targetAngle)
 	return delta
 end
 
--- Calculate gear rotation based on time since last update
+--[[
+	Calculate gear rotation based on time since last update
+	
+	Params:
+		deltaSeconds (num) - number of seconds since last update (can be fractions of seconds)
+	
+	Returns:
+		true if tower was rotating
+		false if no rotation
+]]
 function calcGearDegrees(deltaSeconds)
 	-- Calculate rotation speed scale
-	local gearRotationFactorTarget
 
-	if gearTargetDegrees then
-		-- Rotate tower to target angle
-		local gearTargetDegreesDiff = angleDelta(gearSunDegrees, gearTargetDegrees)
-		
-		if math.abs(gearTargetDegreesDiff) < 1 then
-			return
-		end
-
-		gearRotationFactorTarget = gearRotationFactorMax
-
-		-- Slow down rotation as approaching target
-		if (math.abs(gearTargetDegreesDiff) < 15) then
-			gearRotationFactorTarget = gearRotationFactorTarget * math.abs(gearTargetDegreesDiff) / 15
-		end
-
-		-- Invert rotation speed if going clockwise
-		if (gearTargetDegreesDiff < 0) then
-			gearRotationFactorTarget = -gearRotationFactorTarget
-		end
-	else
-		-- Set target angle based on slider control
-		gearRotationFactorTarget = gearControlPosition * gearRotationFactorMax * -1
-	end
+	-- Set target angle based on slider control
+	local gearRotationFactorTarget = gearControlPosition * gearRotationFactorMax * -1
 	
 	-- Accelerate gear rotation factor based on slider control
 	local gearRotationFactorDiff = gearRotationFactorTarget - gearRotationFactor
@@ -86,7 +106,7 @@ function calcGearDegrees(deltaSeconds)
 	zesty_gear_planet3.transform.rotation = Quaternion.Euler(0, gearPlanetDegrees, 0)
 	zesty_gear_ring_parent.transform.rotation = Quaternion.Euler(0, gearRingDegrees, 0)
 
-	--zesty_wheel.transform.rotation = Quaternion.Euler(0, 90, 90 - gearSunDegrees)
+	return (gearRotationFactor ~= 0)
 end
 
 -- Events
@@ -96,16 +116,30 @@ if callType == LuaCallType.Init then
 	deltaIntervalSeconds = 1 / 60 -- Interval of time between updates to gears
 	gearRotationFactorMax = 2
 	sliderIncrement = 0
+	rotating = false -- Whether or not tower is currently rotating
 
 	initGears()
 	calcGearDegrees(0)
+	activate({zesty_elevator_obstacle2}, false, true) -- Hide this obstacle at start
 
 elseif callType == LuaCallType.Update then
 	local currentTime = Time.time
 	local deltaSeconds = currentTime - lastUpdateTime
 
 	if deltaSeconds >= deltaIntervalSeconds then
-		calcGearDegrees(deltaSeconds)
+		if calcGearDegrees(deltaSeconds) then
+			if not rotating then
+				activate({zesty_elevator_obstacle2}, true, true) -- Spawn elevator obstacle to prevent people clipping in and stealing trophy early
+				rotating = true
+				--api.log("rotating...")
+			end
+		else
+			if rotating then
+				activate({zesty_elevator_obstacle2}, false, true)
+				rotating = false
+				--api.log("stopped.")
+			end
+		end
 		lastUpdateTime = currentTime
 	end
 
@@ -122,20 +156,6 @@ elseif callType == LuaCallType.SlidableMoved then
 
 			sliderIncrement = newSliderIncrement
 			gearControlPosition = sliderIncrement * 0.5
-			gearTargetDegrees = nil -- Override target angle
 		end
 	end
-
-elseif callType == LuaCallType.SwitchDone then
-	if context == zesty_button_east then
-		gearTargetDegrees = 0
-	elseif context == zesty_button_north then
-		gearTargetDegrees = 90
-	elseif context == zesty_button_west then
-		gearTargetDegrees = 180
-	elseif context == zesty_button_south then
-		gearTargetDegrees = 270
-	end
-
-elseif callType == LuaCallType.Slot then
 end
