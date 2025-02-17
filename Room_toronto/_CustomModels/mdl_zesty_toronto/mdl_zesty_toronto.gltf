@@ -482,29 +482,29 @@
 		{
 			"bufferView":28,
 			"componentType":5126,
-			"count":83,
+			"count":494,
 			"max":[
 				13.808603286743164,
 				20.858871459960938,
 				74.32166290283203
 			],
 			"min":[
-				0,
+				-13.808603286743164,
 				-15.456619262695312,
-				0
+				-74.32166290283203
 			],
 			"type":"VEC3"
 		},
 		{
 			"bufferView":29,
 			"componentType":5126,
-			"count":83,
+			"count":494,
 			"type":"VEC3"
 		},
 		{
 			"bufferView":30,
 			"componentType":5123,
-			"count":408,
+			"count":1632,
 			"type":"SCALAR"
 		},
 		{
@@ -721,50 +721,50 @@
 		},
 		{
 			"buffer":0,
-			"byteLength":996,
+			"byteLength":5928,
 			"byteOffset":4389772,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":996,
-			"byteOffset":4390768,
+			"byteLength":5928,
+			"byteOffset":4395700,
 			"target":34962
 		},
 		{
 			"buffer":0,
-			"byteLength":816,
-			"byteOffset":4391764,
+			"byteLength":3264,
+			"byteOffset":4401628,
 			"target":34963
 		},
 		{
 			"buffer":0,
 			"byteLength":107796,
-			"byteOffset":4392580,
+			"byteOffset":4404892,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":107796,
-			"byteOffset":4500376,
+			"byteOffset":4512688,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":35932,
-			"byteOffset":4608172,
+			"byteOffset":4620484,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":71864,
-			"byteOffset":4644104,
+			"byteOffset":4656416,
 			"target":34962
 		},
 		{
 			"buffer":0,
 			"byteLength":17970,
-			"byteOffset":4715968,
+			"byteOffset":4728280,
 			"target":34963
 		}
 	],
@@ -776,7 +776,7 @@
 	],
 	"buffers":[
 		{
-			"byteLength":4733940,
+			"byteLength":4746252,
 			"uri":"mdl_zesty_toronto.bin"
 		}
 	]
