@@ -10,7 +10,7 @@ function initGears()
 	gearControlPosition = 0				-- Slider that controls rotation
 	gearTargetDegrees = nil				-- If set, rotate to this angle
 
-	gearSunDegrees = 90					-- Angle of the central "sun" gear
+	gearSunDegrees = 11.25				-- Angle of the central "sun" gear
 	gearPlanetDegrees = 360 / 32 / 2	-- Angle of the 3 "planet" gears
 	gearRingDegrees = 0					-- Angle of the outer "ring" gear
 	
