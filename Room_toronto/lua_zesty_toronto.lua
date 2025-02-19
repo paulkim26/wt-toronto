@@ -43,7 +43,8 @@ function initGears()
 	gearRotationFactor = 0				-- Base factor that all gear rotation is based on
 	gearControlPosition = 0				-- Slider that controls rotation
 
-	gearSunDegrees = 11.25				-- Angle of the central "sun" gear
+	--gearSunDegrees = 11.25				-- Angle of the central "sun" gear
+	gearSunDegrees = 0
 	gearPlanetDegrees = 360 / 32 / 2	-- Angle of the 3 "planet" gears
 	gearRingDegrees = 0					-- Angle of the outer "ring" gear
 	

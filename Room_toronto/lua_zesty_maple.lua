@@ -11,6 +11,12 @@ function checkMapleCollision()
 			cells[i][j] = 0
 		end
 	end
+
+	-- Hard set bottom right slot (because there's a fixed crest there)
+	cells[1][5] = 1
+	cells[2][5] = 1
+	cells[3][6] = 1
+
 	--[[
 		Row 1 - small red jewels
 		Row 2 - large red jewels
