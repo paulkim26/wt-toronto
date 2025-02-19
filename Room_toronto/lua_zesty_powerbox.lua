@@ -344,135 +344,141 @@ function powerDisplay()
 	api.log("Total energy: " .. powerEnergy)
 end
 
-if callType == LuaCallType.Init then
-	-- Globals
-	moduleLoaded = false
-	powerRows = 8
-	powerColumns = 8
-	powerCells = {}
-	powerEnergy = 0
-
-	-- Set up power displays
-	powerDisplaySplit1 = PowerDisplaySplit.new(
-		PowerDisplay.new(zesty_digit_1a_10, zesty_digit_1a_1, powerEnergy),
-		PowerDisplay.new(zesty_digit_1b_10, zesty_digit_1b_1, powerEnergy),
-		zesty_digit_1_slash,
-		zesty_digit_1_button,
-		11
-	)
-
-	powerDisplaySplit3 = PowerDisplaySplit.new(
-		PowerDisplay.new(zesty_digit_3a_10, zesty_digit_3a_1, powerEnergy),
-		PowerDisplay.new(zesty_digit_3b_10, zesty_digit_3b_1, powerEnergy),
-		zesty_digit_3_slash,
-		zesty_digit_3_button,
-		20
-	)
-
-	powerDisplay0 = PowerDisplay.new(zesty_digit_0_10, zesty_digit_0_1, powerEnergy)
-
-	-- The first power node that is always on
-	powerNodeInit = PowerNode.new(zesty_powernode_1_on, zesty_powernode_1_off, 4, 5, 1)
-	powerNodeInit:on()
-
-	powerNodes = {
-		PowerNode.new(zesty_powernode_2_on, zesty_powernode_2_off, 1, 1, 1),
-		PowerNode.new(zesty_powernode_3_on, zesty_powernode_3_off, 3, 1, 3),
-		PowerNode.new(zesty_powernode_4_on, zesty_powernode_4_off, 8, 1, 4),
-		PowerNode.new(zesty_powernode_5_on, zesty_powernode_5_off, 7, 2, 1),
-		PowerNode.new(zesty_powernode_6_on, zesty_powernode_6_off, 3, 4, 3),
-		PowerNode.new(zesty_powernode_7_on, zesty_powernode_7_off, 7, 4, 1),
-		PowerNode.new(zesty_powernode_8_on, zesty_powernode_8_off, 2, 6, 2),
-		PowerNode.new(zesty_powernode_9_on, zesty_powernode_9_off, 6, 7, 2),
-		PowerNode.new(zesty_powernode_10_on, zesty_powernode_10_off, 1, 8, 1),
-		PowerNode.new(zesty_powernode_11_on, zesty_powernode_11_off, 8, 8, 1)
-	}
-
-	powerSlots = {
-		PowerSlot.new(zesty_powerslot_h11, 1, 1, true),
-		PowerSlot.new(zesty_powerslot_h12, 2, 1, true),
-		PowerSlot.new(zesty_powerslot_h13, 3, 1, true),
-		PowerSlot.new(zesty_powerslot_h14, 4, 1, true),
-		PowerSlot.new(zesty_powerslot_h15, 5, 1, true),
-		PowerSlot.new(zesty_powerslot_h21, 1, 2, true),
-		PowerSlot.new(zesty_powerslot_h22, 2, 2, true),
-		PowerSlot.new(zesty_powerslot_h23, 3, 2, true),
-		PowerSlot.new(zesty_powerslot_h24, 4, 2, true),
-		PowerSlot.new(zesty_powerslot_h25, 5, 2, true),
-		PowerSlot.new(zesty_powerslot_h31, 1, 3, true),
-		PowerSlot.new(zesty_powerslot_h32, 2, 3, true),
-		PowerSlot.new(zesty_powerslot_h33, 3, 3, true),
-		PowerSlot.new(zesty_powerslot_h34, 4, 3, true),
-		PowerSlot.new(zesty_powerslot_h35, 5, 3, true),
-		PowerSlot.new(zesty_powerslot_h41, 1, 4, true),
-		PowerSlot.new(zesty_powerslot_h42, 2, 4, true),
-		PowerSlot.new(zesty_powerslot_h43, 3, 4, true),
-		PowerSlot.new(zesty_powerslot_h44, 4, 4, true),
-		PowerSlot.new(zesty_powerslot_h45, 5, 4, true),
-		PowerSlot.new(zesty_powerslot_h51, 1, 5, true),
-		PowerSlot.new(zesty_powerslot_h52, 2, 5, true),
-		PowerSlot.new(zesty_powerslot_h53, 3, 5, true),
-		PowerSlot.new(zesty_powerslot_h54, 4, 5, true),
-		PowerSlot.new(zesty_powerslot_h55, 5, 5, true),
-		PowerSlot.new(zesty_powerslot_h61, 1, 6, true),
-		PowerSlot.new(zesty_powerslot_h62, 2, 6, true),
-		PowerSlot.new(zesty_powerslot_h63, 3, 6, true),
-		PowerSlot.new(zesty_powerslot_h64, 4, 6, true),
-		PowerSlot.new(zesty_powerslot_h65, 5, 6, true),
-		PowerSlot.new(zesty_powerslot_h71, 1, 7, true),
-		PowerSlot.new(zesty_powerslot_h72, 2, 7, true),
-		PowerSlot.new(zesty_powerslot_h73, 3, 7, true),
-		PowerSlot.new(zesty_powerslot_h74, 4, 7, true),
-		PowerSlot.new(zesty_powerslot_h75, 5, 7, true),
-		PowerSlot.new(zesty_powerslot_h81, 1, 8, true),
-		PowerSlot.new(zesty_powerslot_h82, 2, 8, true),
-		PowerSlot.new(zesty_powerslot_h83, 3, 8, true),
-		PowerSlot.new(zesty_powerslot_h84, 4, 8, true),
-		PowerSlot.new(zesty_powerslot_h85, 5, 8, true),
-		PowerSlot.new(zesty_powerslot_v11, 1, 1, false),
-		PowerSlot.new(zesty_powerslot_v12, 2, 1, false),
-		PowerSlot.new(zesty_powerslot_v13, 3, 1, false),
-		PowerSlot.new(zesty_powerslot_v14, 4, 1, false),
-		PowerSlot.new(zesty_powerslot_v15, 5, 1, false),
-		PowerSlot.new(zesty_powerslot_v16, 6, 1, false),
-		PowerSlot.new(zesty_powerslot_v17, 7, 1, false),
-		PowerSlot.new(zesty_powerslot_v18, 8, 1, false),
-		PowerSlot.new(zesty_powerslot_v21, 1, 2, false),
-		PowerSlot.new(zesty_powerslot_v22, 2, 2, false),
-		PowerSlot.new(zesty_powerslot_v23, 3, 2, false),
-		PowerSlot.new(zesty_powerslot_v24, 4, 2, false),
-		PowerSlot.new(zesty_powerslot_v25, 5, 2, false),
-		PowerSlot.new(zesty_powerslot_v26, 6, 2, false),
-		PowerSlot.new(zesty_powerslot_v27, 7, 2, false),
-		PowerSlot.new(zesty_powerslot_v28, 8, 2, false),
-		PowerSlot.new(zesty_powerslot_v31, 1, 3, false),
-		PowerSlot.new(zesty_powerslot_v32, 2, 3, false),
-		PowerSlot.new(zesty_powerslot_v33, 3, 3, false),
-		PowerSlot.new(zesty_powerslot_v34, 4, 3, false),
-		PowerSlot.new(zesty_powerslot_v35, 5, 3, false),
-		PowerSlot.new(zesty_powerslot_v36, 6, 3, false),
-		PowerSlot.new(zesty_powerslot_v37, 7, 3, false),
-		PowerSlot.new(zesty_powerslot_v38, 8, 3, false),
-		PowerSlot.new(zesty_powerslot_v41, 1, 4, false),
-		PowerSlot.new(zesty_powerslot_v42, 2, 4, false),
-		PowerSlot.new(zesty_powerslot_v43, 3, 4, false),
-		PowerSlot.new(zesty_powerslot_v44, 4, 4, false),
-		PowerSlot.new(zesty_powerslot_v45, 5, 4, false),
-		PowerSlot.new(zesty_powerslot_v46, 6, 4, false),
-		PowerSlot.new(zesty_powerslot_v47, 7, 4, false),
-		PowerSlot.new(zesty_powerslot_v48, 8, 4, false),
-		PowerSlot.new(zesty_powerslot_v51, 1, 5, false),
-		PowerSlot.new(zesty_powerslot_v52, 2, 5, false),
-		PowerSlot.new(zesty_powerslot_v53, 3, 5, false),
-		PowerSlot.new(zesty_powerslot_v54, 4, 5, false),
-		PowerSlot.new(zesty_powerslot_v55, 5, 5, false),
-		PowerSlot.new(zesty_powerslot_v56, 6, 5, false),
-		PowerSlot.new(zesty_powerslot_v57, 7, 5, false),
-		PowerSlot.new(zesty_powerslot_v58, 8, 5, false)
-	}
-
-	powerUpdate()
-
+if callType == LuaCallType.Unlock then
+	if context == zesty_init then
+		-- Globals
+		moduleLoaded = false
+		powerRows = 8
+		powerColumns = 8
+		powerCells = {}
+		powerEnergy = 0
+	
+		-- Set up power displays
+		powerDisplaySplit1 = PowerDisplaySplit.new(
+			PowerDisplay.new(zesty_digit_1a_10, zesty_digit_1a_1, powerEnergy),
+			PowerDisplay.new(zesty_digit_1b_10, zesty_digit_1b_1, powerEnergy),
+			zesty_digit_1_slash,
+			zesty_digit_1_button,
+			11
+		)
+	
+		powerDisplaySplit3 = PowerDisplaySplit.new(
+			PowerDisplay.new(zesty_digit_3a_10, zesty_digit_3a_1, powerEnergy),
+			PowerDisplay.new(zesty_digit_3b_10, zesty_digit_3b_1, powerEnergy),
+			zesty_digit_3_slash,
+			zesty_digit_3_button,
+			20
+		)
+	
+		powerDisplay0 = PowerDisplay.new(zesty_digit_0_10, zesty_digit_0_1, powerEnergy)
+	
+		-- The first power node that is always on
+		powerNodeInit = PowerNode.new(zesty_powernode_1_on, zesty_powernode_1_off, 4, 5, 1)
+		powerNodeInit:on()
+	
+		powerNodes = {
+			PowerNode.new(zesty_powernode_2_on, zesty_powernode_2_off, 1, 1, 1),
+			PowerNode.new(zesty_powernode_3_on, zesty_powernode_3_off, 3, 1, 3),
+			PowerNode.new(zesty_powernode_4_on, zesty_powernode_4_off, 8, 1, 4),
+			PowerNode.new(zesty_powernode_5_on, zesty_powernode_5_off, 7, 2, 1),
+			PowerNode.new(zesty_powernode_6_on, zesty_powernode_6_off, 3, 4, 3),
+			PowerNode.new(zesty_powernode_7_on, zesty_powernode_7_off, 7, 4, 1),
+			PowerNode.new(zesty_powernode_8_on, zesty_powernode_8_off, 2, 6, 2),
+			PowerNode.new(zesty_powernode_9_on, zesty_powernode_9_off, 6, 7, 2),
+			PowerNode.new(zesty_powernode_10_on, zesty_powernode_10_off, 1, 8, 1),
+			PowerNode.new(zesty_powernode_11_on, zesty_powernode_11_off, 8, 8, 1)
+		}
+	
+		powerSlots = {
+			PowerSlot.new(zesty_powerslot_h11, 1, 1, true),
+			PowerSlot.new(zesty_powerslot_h12, 2, 1, true),
+			PowerSlot.new(zesty_powerslot_h13, 3, 1, true),
+			PowerSlot.new(zesty_powerslot_h14, 4, 1, true),
+			PowerSlot.new(zesty_powerslot_h15, 5, 1, true),
+			PowerSlot.new(zesty_powerslot_h21, 1, 2, true),
+			PowerSlot.new(zesty_powerslot_h22, 2, 2, true),
+			PowerSlot.new(zesty_powerslot_h23, 3, 2, true),
+			PowerSlot.new(zesty_powerslot_h24, 4, 2, true),
+			PowerSlot.new(zesty_powerslot_h25, 5, 2, true),
+			PowerSlot.new(zesty_powerslot_h31, 1, 3, true),
+			PowerSlot.new(zesty_powerslot_h32, 2, 3, true),
+			PowerSlot.new(zesty_powerslot_h33, 3, 3, true),
+			PowerSlot.new(zesty_powerslot_h34, 4, 3, true),
+			PowerSlot.new(zesty_powerslot_h35, 5, 3, true),
+			PowerSlot.new(zesty_powerslot_h41, 1, 4, true),
+			PowerSlot.new(zesty_powerslot_h42, 2, 4, true),
+			PowerSlot.new(zesty_powerslot_h43, 3, 4, true),
+			PowerSlot.new(zesty_powerslot_h44, 4, 4, true),
+			PowerSlot.new(zesty_powerslot_h45, 5, 4, true),
+			PowerSlot.new(zesty_powerslot_h51, 1, 5, true),
+			PowerSlot.new(zesty_powerslot_h52, 2, 5, true),
+			PowerSlot.new(zesty_powerslot_h53, 3, 5, true),
+			PowerSlot.new(zesty_powerslot_h54, 4, 5, true),
+			PowerSlot.new(zesty_powerslot_h55, 5, 5, true),
+			PowerSlot.new(zesty_powerslot_h61, 1, 6, true),
+			PowerSlot.new(zesty_powerslot_h62, 2, 6, true),
+			PowerSlot.new(zesty_powerslot_h63, 3, 6, true),
+			PowerSlot.new(zesty_powerslot_h64, 4, 6, true),
+			PowerSlot.new(zesty_powerslot_h65, 5, 6, true),
+			PowerSlot.new(zesty_powerslot_h71, 1, 7, true),
+			PowerSlot.new(zesty_powerslot_h72, 2, 7, true),
+			PowerSlot.new(zesty_powerslot_h73, 3, 7, true),
+			PowerSlot.new(zesty_powerslot_h74, 4, 7, true),
+			PowerSlot.new(zesty_powerslot_h75, 5, 7, true),
+			PowerSlot.new(zesty_powerslot_h81, 1, 8, true),
+			PowerSlot.new(zesty_powerslot_h82, 2, 8, true),
+			PowerSlot.new(zesty_powerslot_h83, 3, 8, true),
+			PowerSlot.new(zesty_powerslot_h84, 4, 8, true),
+			PowerSlot.new(zesty_powerslot_h85, 5, 8, true),
+			PowerSlot.new(zesty_powerslot_v11, 1, 1, false),
+			PowerSlot.new(zesty_powerslot_v12, 2, 1, false),
+			PowerSlot.new(zesty_powerslot_v13, 3, 1, false),
+			PowerSlot.new(zesty_powerslot_v14, 4, 1, false),
+			PowerSlot.new(zesty_powerslot_v15, 5, 1, false),
+			PowerSlot.new(zesty_powerslot_v16, 6, 1, false),
+			PowerSlot.new(zesty_powerslot_v17, 7, 1, false),
+			PowerSlot.new(zesty_powerslot_v18, 8, 1, false),
+			PowerSlot.new(zesty_powerslot_v21, 1, 2, false),
+			PowerSlot.new(zesty_powerslot_v22, 2, 2, false),
+			PowerSlot.new(zesty_powerslot_v23, 3, 2, false),
+			PowerSlot.new(zesty_powerslot_v24, 4, 2, false),
+			PowerSlot.new(zesty_powerslot_v25, 5, 2, false),
+			PowerSlot.new(zesty_powerslot_v26, 6, 2, false),
+			PowerSlot.new(zesty_powerslot_v27, 7, 2, false),
+			PowerSlot.new(zesty_powerslot_v28, 8, 2, false),
+			PowerSlot.new(zesty_powerslot_v31, 1, 3, false),
+			PowerSlot.new(zesty_powerslot_v32, 2, 3, false),
+			PowerSlot.new(zesty_powerslot_v33, 3, 3, false),
+			PowerSlot.new(zesty_powerslot_v34, 4, 3, false),
+			PowerSlot.new(zesty_powerslot_v35, 5, 3, false),
+			PowerSlot.new(zesty_powerslot_v36, 6, 3, false),
+			PowerSlot.new(zesty_powerslot_v37, 7, 3, false),
+			PowerSlot.new(zesty_powerslot_v38, 8, 3, false),
+			PowerSlot.new(zesty_powerslot_v41, 1, 4, false),
+			PowerSlot.new(zesty_powerslot_v42, 2, 4, false),
+			PowerSlot.new(zesty_powerslot_v43, 3, 4, false),
+			PowerSlot.new(zesty_powerslot_v44, 4, 4, false),
+			PowerSlot.new(zesty_powerslot_v45, 5, 4, false),
+			PowerSlot.new(zesty_powerslot_v46, 6, 4, false),
+			PowerSlot.new(zesty_powerslot_v47, 7, 4, false),
+			PowerSlot.new(zesty_powerslot_v48, 8, 4, false),
+			PowerSlot.new(zesty_powerslot_v51, 1, 5, false),
+			PowerSlot.new(zesty_powerslot_v52, 2, 5, false),
+			PowerSlot.new(zesty_powerslot_v53, 3, 5, false),
+			PowerSlot.new(zesty_powerslot_v54, 4, 5, false),
+			PowerSlot.new(zesty_powerslot_v55, 5, 5, false),
+			PowerSlot.new(zesty_powerslot_v56, 6, 5, false),
+			PowerSlot.new(zesty_powerslot_v57, 7, 5, false),
+			PowerSlot.new(zesty_powerslot_v58, 8, 5, false)
+		}
+	
+		powerUpdate()
+	elseif context == zesty_powerslot_remove then
+		api.setLockValue(zesty_sfx_connectoroff, 1, 1)
+		powerUpdate()
+	elseif context == zesty_show_module then
+		moduleLoaded = true
+	end	
 elseif callType == LuaCallType.Slot then
 	for _, powerSlot in ipairs(powerSlots) do
 		if context == powerSlot.element then
@@ -482,13 +488,4 @@ elseif callType == LuaCallType.Slot then
 			powerUpdate()
 		end
 	end
-
-elseif callType == LuaCallType.Unlock then
-	if context == zesty_powerslot_remove then
-		api.setLockValue(zesty_sfx_connectoroff, 1, 1)
-		powerUpdate()
-	elseif context == zesty_show_module then
-		moduleLoaded = true
-	end
-
 end

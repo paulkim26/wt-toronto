@@ -111,39 +111,42 @@ function calcGearDegrees(deltaSeconds)
 end
 
 -- Events
-if callType == LuaCallType.Init then
-	-- Global variables
-	lastUpdateTime = 0
-	deltaIntervalSeconds = 1 / 60 -- Interval of time between updates to gears
-	gearRotationFactorMax = 2
-	sliderIncrement = 0
-	rotating = false -- Whether or not tower is currently rotating
+if callType == LuaCallType.Unlock then
+	if context == zesty_init then
+		-- Global variables
+		lastUpdateTime = 0
+		deltaIntervalSeconds = 1 / 60 -- Interval of time between updates to gears
+		gearRotationFactorMax = 2
+		sliderIncrement = 0
+		rotating = false -- Whether or not tower is currently rotating
 
-	initGears()
-	calcGearDegrees(0)
-	activate({zesty_elevator_obstacle2}, false, true) -- Hide this obstacle at start
-
-elseif callType == LuaCallType.Update then
-	local currentTime = Time.time
-	local deltaSeconds = currentTime - lastUpdateTime
-
-	if deltaSeconds >= deltaIntervalSeconds then
-		if calcGearDegrees(deltaSeconds) then
-			if not rotating then
-				activate({zesty_elevator_obstacle2}, true, true) -- Spawn elevator obstacle to prevent people clipping in and stealing trophy early
-				rotating = true
-				--api.log("rotating...")
-			end
-		else
-			if rotating then
-				activate({zesty_elevator_obstacle2}, false, true)
-				rotating = false
-				--api.log("stopped.")
-			end
-		end
-		lastUpdateTime = currentTime
+		initGears()
+		calcGearDegrees(0)
+		activate({zesty_elevator_obstacle2}, false, true) -- Hide this obstacle at start
 	end
+elseif callType == LuaCallType.Update then
+	if lastUpdateTime ~= nil then -- Don't run this if global vars are uninitialized
 
+		local currentTime = Time.time
+		local deltaSeconds = currentTime - lastUpdateTime
+
+		if deltaSeconds >= deltaIntervalSeconds then
+			if calcGearDegrees(deltaSeconds) then
+				if not rotating then
+					activate({zesty_elevator_obstacle2}, true, true) -- Spawn elevator obstacle to prevent people clipping in and stealing trophy early
+					rotating = true
+					--api.log("rotating...")
+				end
+			else
+				if rotating then
+					activate({zesty_elevator_obstacle2}, false, true)
+					rotating = false
+					--api.log("stopped.")
+				end
+			end
+			lastUpdateTime = currentTime
+		end
+	end
 elseif callType == LuaCallType.SlidableMoved then
 	if context == zesty_slider then
 		local newSliderIncrement = round((zesty_slider.value - 0.5) * 4)

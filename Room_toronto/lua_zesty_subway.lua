@@ -141,40 +141,39 @@ function displayWinner()
 	end
 end
 
-if callType == LuaCallType.Init then
-	winner = 0
-	sliderSegments = 26
-	-- # of unique sliderSegments on slider
-	-- Should be 26 (1 for each letter)
-
-	letterSliders = {
-		LetterSlider.new(zesty_letterslider1, 0, {
-			{zesty_subway_digit12, 0}, --O
-			{zesty_subway_digit24, 0}, --O
-			{zesty_subway_digit31, 2}, --Q
-			{zesty_subway_digit14, -8}, --G
-		}, 14),
-		LetterSlider.new(zesty_letterslider2, 0, {
-			{zesty_subway_digit32, 0}, --U
-			{zesty_subway_digit21, 0}, --U
-			{zesty_subway_digit11, 4}, --Y (U + 4)
-			{zesty_subway_digit23, -12}, --I (U - 12)
-		}, 20),
-		LetterSlider.new(zesty_letterslider3, 0, {
-			{zesty_subway_digit33, 0}, --E
-			{zesty_subway_digit34, 0}, --E
-			{zesty_subway_digit15, 0}, --E
-		}, 4),
-		LetterSlider.new(zesty_letterslider4, 0, {
-			{zesty_subway_digit35, 0}, --N
-			{zesty_subway_digit13, 0}, --N
-			{zesty_subway_digit22, 0}, --N
-			{zesty_subway_digit25, 0}, --N
-		}, 13),
-	}
-
-elseif callType == LuaCallType.Unlock then
-	if context == zesty_winner_lock then
+if callType == LuaCallType.Unlock then
+	if context == zesty_init then
+		winner = 0
+		sliderSegments = 26
+		-- # of unique sliderSegments on slider
+		-- Should be 26 (1 for each letter)
+	
+		letterSliders = {
+			LetterSlider.new(zesty_letterslider1, 0, {
+				{zesty_subway_digit12, 0}, --O
+				{zesty_subway_digit24, 0}, --O
+				{zesty_subway_digit31, 2}, --Q
+				{zesty_subway_digit14, -8}, --G
+			}, 14),
+			LetterSlider.new(zesty_letterslider2, 0, {
+				{zesty_subway_digit32, 0}, --U
+				{zesty_subway_digit21, 0}, --U
+				{zesty_subway_digit11, 4}, --Y (U + 4)
+				{zesty_subway_digit23, -12}, --I (U - 12)
+			}, 20),
+			LetterSlider.new(zesty_letterslider3, 0, {
+				{zesty_subway_digit33, 0}, --E
+				{zesty_subway_digit34, 0}, --E
+				{zesty_subway_digit15, 0}, --E
+			}, 4),
+			LetterSlider.new(zesty_letterslider4, 0, {
+				{zesty_subway_digit35, 0}, --N
+				{zesty_subway_digit13, 0}, --N
+				{zesty_subway_digit22, 0}, --N
+				{zesty_subway_digit25, 0}, --N
+			}, 13),
+		}
+	elseif context == zesty_winner_lock then
 		displayWinner()
 	elseif context == zesty_subwayslider_moved then
 		checkSliders()

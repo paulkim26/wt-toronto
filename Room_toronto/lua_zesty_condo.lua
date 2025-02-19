@@ -384,226 +384,217 @@ function printTable(table)
 	end
 end
 
-if callType == LuaCallType.Init then
-	win = false
 
-	activate({
-		zesty_condo_pillars_parent,
-		zesty_condo_screen_west,
-		zesty_condo_screen_south,
-		zesty_condo_screen_east,
-		zesty_token_parent
-	}, false, true) -- Hide pillars @ room start
+if callType == LuaCallType.Unlock then
+	if context == zesty_init then
+		win = false
 
-	condos = {
-		{
-			Condo.new(
-				zesty_condo_11_slider,
-				zesty_condo_11_slot,
-				zesty_condo_rail_toggle_11n,
-				zesty_condo_rail_toggle_11e,
-				zesty_condo_rail_toggle_11s,
-				zesty_condo_rail_toggle_11w
-			),
-			Condo.new(
-				zesty_condo_12_slider,
-				zesty_condo_12_slot,
-				zesty_condo_rail_toggle_12n,
-				zesty_condo_rail_toggle_12e,
-				zesty_condo_rail_toggle_12s,
-				zesty_condo_rail_toggle_12w
-			),
-			Condo.new(
-				zesty_condo_13_slider,
-				zesty_condo_13_slot,
-				zesty_condo_rail_toggle_13n,
-				zesty_condo_rail_toggle_13e,
-				zesty_condo_rail_toggle_13s,
-				zesty_condo_rail_toggle_13w
-			),
-		},
-		{
-			Condo.new(
-				zesty_condo_21_slider,
-				zesty_condo_21_slot,
-				zesty_condo_rail_toggle_21n,
-				zesty_condo_rail_toggle_21e,
-				zesty_condo_rail_toggle_21s,
-				zesty_condo_rail_toggle_21w
-			),
-			Condo.new(
-				zesty_condo_22_slider,
-				zesty_condo_22_slot,
-				zesty_condo_rail_toggle_22n,
-				zesty_condo_rail_toggle_22e,
-				zesty_condo_rail_toggle_22s,
-				zesty_condo_rail_toggle_22w
-			),
-			Condo.new(
-				zesty_condo_23_slider,
-				zesty_condo_23_slot,
-				zesty_condo_rail_toggle_23n,
-				zesty_condo_rail_toggle_23e,
-				zesty_condo_rail_toggle_23s,
-				zesty_condo_rail_toggle_23w
-			),
-		},
-		{
-			Condo.new(
-				zesty_condo_31_slider,
-				zesty_condo_31_slot,
-				zesty_condo_rail_toggle_31n,
-				zesty_condo_rail_toggle_31e,
-				zesty_condo_rail_toggle_31s,
-				zesty_condo_rail_toggle_31w
-			),
-			Condo.new(
-				zesty_condo_32_slider,
-				zesty_condo_32_slot,
-				zesty_condo_rail_toggle_32n,
-				zesty_condo_rail_toggle_32e,
-				zesty_condo_rail_toggle_32s,
-				zesty_condo_rail_toggle_32w
-			),
-			Condo.new(
-				zesty_condo_33_slider,
-				zesty_condo_33_slot,
-				zesty_condo_rail_toggle_33n,
-				zesty_condo_rail_toggle_33e,
-				zesty_condo_rail_toggle_33s,
-				zesty_condo_rail_toggle_33w
-			),
-		},
-	}
-
-	condoScreenSouth = {
-		{
-			zesty_condo_screen_south_11,
-			zesty_condo_screen_south_12,
-			zesty_condo_screen_south_13,
-		},
-		{
-			zesty_condo_screen_south_21,
-			zesty_condo_screen_south_22,
-			zesty_condo_screen_south_23,
-		},
-		{
-			zesty_condo_screen_south_31,
-			zesty_condo_screen_south_32,
-			zesty_condo_screen_south_33,
-		}
-	}
-
-	condoScreenWest = {
-		{
-			zesty_condo_screen_west_11,
-			zesty_condo_screen_west_12,
-			zesty_condo_screen_west_13,
-		},
-		{
-			zesty_condo_screen_west_21,
-			zesty_condo_screen_west_22,
-			zesty_condo_screen_west_23,
-		},
-		{
-			zesty_condo_screen_west_31,
-			zesty_condo_screen_west_32,
-			zesty_condo_screen_west_33,
-		}
-	}
-
-	condoScreenEast = {
-		{
-			zesty_condo_screen_east_11,
-			zesty_condo_screen_east_12,
-			zesty_condo_screen_east_13,
-		},
-		{
-			zesty_condo_screen_east_21,
-			zesty_condo_screen_east_22,
-			zesty_condo_screen_east_23,
-		},
-		{
-			zesty_condo_screen_east_31,
-			zesty_condo_screen_east_32,
-			zesty_condo_screen_east_33,
-		}
-	}
-
-	condosSouthPerspective = condos
-
-	condosWestPerspective = {
-		{
-			condos[1][3],
-			condos[2][3],
-			condos[3][3],
-		},
-		{
-			condos[1][2],
-			condos[2][2],
-			condos[3][2],
-		},
-		{
-			condos[1][1],
-			condos[2][1],
-			condos[3][1],
-		},
-	}
-
-	condosEastPerspective = {
-		{
-			condos[3][1],
-			condos[2][1],
-			condos[1][1],
-		},
-		{
-			condos[3][2],
-			condos[2][2],
-			condos[1][2],
-		},
-		{
-			condos[3][3],
-			condos[2][3],
-			condos[1][3],
-		},
-	}
-
-	condosSouthSolution = {
-		{ 0, 0, 0 },
-		{ 1, 1, 0 },
-		{ 0, 0, 1 },
-	}
+		activate({
+			zesty_condo_pillars_parent,
+			zesty_condo_screen_west,
+			zesty_condo_screen_south,
+			zesty_condo_screen_east,
+			zesty_token_parent
+		}, false, true) -- Hide pillars @ room start
 	
-	condosWestSolution = {
-		{ 0, 0, 0 },
-		{ 0, 1, 0 },
-		{ 0, 0, 0 },
-	}
-
-	condosEastSolution = {
-		{ 0, 1, 0 },
-		{ 0, 1, 0 },
-		{ 0, 0, 1 },
-	}
-
-	screenLightSouth = ScreenLight.new(zesty_condo_south_light, zesty_condo_south_lightcover)
-	screenLightWest = ScreenLight.new(zesty_condo_west_light, zesty_condo_west_lightcover)
-	screenLightEast = ScreenLight.new(zesty_condo_east_light, zesty_condo_east_lightcover)
+		condos = {
+			{
+				Condo.new(
+					zesty_condo_11_slider,
+					zesty_condo_11_slot,
+					zesty_condo_rail_toggle_11n,
+					zesty_condo_rail_toggle_11e,
+					zesty_condo_rail_toggle_11s,
+					zesty_condo_rail_toggle_11w
+				),
+				Condo.new(
+					zesty_condo_12_slider,
+					zesty_condo_12_slot,
+					zesty_condo_rail_toggle_12n,
+					zesty_condo_rail_toggle_12e,
+					zesty_condo_rail_toggle_12s,
+					zesty_condo_rail_toggle_12w
+				),
+				Condo.new(
+					zesty_condo_13_slider,
+					zesty_condo_13_slot,
+					zesty_condo_rail_toggle_13n,
+					zesty_condo_rail_toggle_13e,
+					zesty_condo_rail_toggle_13s,
+					zesty_condo_rail_toggle_13w
+				),
+			},
+			{
+				Condo.new(
+					zesty_condo_21_slider,
+					zesty_condo_21_slot,
+					zesty_condo_rail_toggle_21n,
+					zesty_condo_rail_toggle_21e,
+					zesty_condo_rail_toggle_21s,
+					zesty_condo_rail_toggle_21w
+				),
+				Condo.new(
+					zesty_condo_22_slider,
+					zesty_condo_22_slot,
+					zesty_condo_rail_toggle_22n,
+					zesty_condo_rail_toggle_22e,
+					zesty_condo_rail_toggle_22s,
+					zesty_condo_rail_toggle_22w
+				),
+				Condo.new(
+					zesty_condo_23_slider,
+					zesty_condo_23_slot,
+					zesty_condo_rail_toggle_23n,
+					zesty_condo_rail_toggle_23e,
+					zesty_condo_rail_toggle_23s,
+					zesty_condo_rail_toggle_23w
+				),
+			},
+			{
+				Condo.new(
+					zesty_condo_31_slider,
+					zesty_condo_31_slot,
+					zesty_condo_rail_toggle_31n,
+					zesty_condo_rail_toggle_31e,
+					zesty_condo_rail_toggle_31s,
+					zesty_condo_rail_toggle_31w
+				),
+				Condo.new(
+					zesty_condo_32_slider,
+					zesty_condo_32_slot,
+					zesty_condo_rail_toggle_32n,
+					zesty_condo_rail_toggle_32e,
+					zesty_condo_rail_toggle_32s,
+					zesty_condo_rail_toggle_32w
+				),
+				Condo.new(
+					zesty_condo_33_slider,
+					zesty_condo_33_slot,
+					zesty_condo_rail_toggle_33n,
+					zesty_condo_rail_toggle_33e,
+					zesty_condo_rail_toggle_33s,
+					zesty_condo_rail_toggle_33w
+				),
+			},
+		}
 	
-	updateCondos()
-	updateCondoRails(false)
-
-elseif callType == LuaCallType.Slot then
-	for _, condoRow in ipairs(condos) do
-		for _, condo in ipairs(condoRow) do
-			if context == condo.slot then
-				updateCondos()
-			end
-		end
-	end
-
-elseif callType == LuaCallType.Unlock then
-	if context == zesty_condo_update then
+		condoScreenSouth = {
+			{
+				zesty_condo_screen_south_11,
+				zesty_condo_screen_south_12,
+				zesty_condo_screen_south_13,
+			},
+			{
+				zesty_condo_screen_south_21,
+				zesty_condo_screen_south_22,
+				zesty_condo_screen_south_23,
+			},
+			{
+				zesty_condo_screen_south_31,
+				zesty_condo_screen_south_32,
+				zesty_condo_screen_south_33,
+			}
+		}
+	
+		condoScreenWest = {
+			{
+				zesty_condo_screen_west_11,
+				zesty_condo_screen_west_12,
+				zesty_condo_screen_west_13,
+			},
+			{
+				zesty_condo_screen_west_21,
+				zesty_condo_screen_west_22,
+				zesty_condo_screen_west_23,
+			},
+			{
+				zesty_condo_screen_west_31,
+				zesty_condo_screen_west_32,
+				zesty_condo_screen_west_33,
+			}
+		}
+	
+		condoScreenEast = {
+			{
+				zesty_condo_screen_east_11,
+				zesty_condo_screen_east_12,
+				zesty_condo_screen_east_13,
+			},
+			{
+				zesty_condo_screen_east_21,
+				zesty_condo_screen_east_22,
+				zesty_condo_screen_east_23,
+			},
+			{
+				zesty_condo_screen_east_31,
+				zesty_condo_screen_east_32,
+				zesty_condo_screen_east_33,
+			}
+		}
+	
+		condosSouthPerspective = condos
+	
+		condosWestPerspective = {
+			{
+				condos[1][3],
+				condos[2][3],
+				condos[3][3],
+			},
+			{
+				condos[1][2],
+				condos[2][2],
+				condos[3][2],
+			},
+			{
+				condos[1][1],
+				condos[2][1],
+				condos[3][1],
+			},
+		}
+	
+		condosEastPerspective = {
+			{
+				condos[3][1],
+				condos[2][1],
+				condos[1][1],
+			},
+			{
+				condos[3][2],
+				condos[2][2],
+				condos[1][2],
+			},
+			{
+				condos[3][3],
+				condos[2][3],
+				condos[1][3],
+			},
+		}
+	
+		condosSouthSolution = {
+			{ 0, 0, 0 },
+			{ 1, 1, 0 },
+			{ 0, 0, 1 },
+		}
+		
+		condosWestSolution = {
+			{ 0, 0, 0 },
+			{ 0, 1, 0 },
+			{ 0, 0, 0 },
+		}
+	
+		condosEastSolution = {
+			{ 0, 1, 0 },
+			{ 0, 1, 0 },
+			{ 0, 0, 1 },
+		}
+	
+		screenLightSouth = ScreenLight.new(zesty_condo_south_light, zesty_condo_south_lightcover)
+		screenLightWest = ScreenLight.new(zesty_condo_west_light, zesty_condo_west_lightcover)
+		screenLightEast = ScreenLight.new(zesty_condo_east_light, zesty_condo_east_lightcover)
+		
+		updateCondos()
+		updateCondoRails(false)
+	elseif context == zesty_condo_update then
 		updateCondos()
 		--[[
 			Bug: this gets triggered twice when the item is slotted (here, and in LuaCallType.Slot).
@@ -623,7 +614,14 @@ elseif callType == LuaCallType.Unlock then
 	elseif context == zesty_condo_complete then
 		complete()
 	end
-
+elseif callType == LuaCallType.Slot then
+	for _, condoRow in ipairs(condos) do
+		for _, condo in ipairs(condoRow) do
+			if context == condo.slot then
+				updateCondos()
+			end
+		end
+	end
 elseif callType == LuaCallType.SlidableMoved then
 	for _, condoRow in ipairs(condos) do
 		for _, condo in ipairs(condoRow) do

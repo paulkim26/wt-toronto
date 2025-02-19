@@ -106,22 +106,22 @@ function printTable(table)
     end
 end
 
-if callType == LuaCallType.Init then
-	mapleSlotsOuter = {
-		zesty_maple_slot_11,
-		zesty_maple_slot_12,
-		zesty_maple_slot_13,
-		zesty_maple_slot_14,
-		zesty_maple_slot_15
-	}
-
-	mapleSlotsInner = {
-		zesty_maple_slot_21,
-		zesty_maple_slot_22
-	}
-
-elseif callType == LuaCallType.Unlock then
-	if context == zesty_maple_button then
+	
+if callType == LuaCallType.Unlock then
+	if context == zesty_init then
+		mapleSlotsOuter = {
+			zesty_maple_slot_11,
+			zesty_maple_slot_12,
+			zesty_maple_slot_13,
+			zesty_maple_slot_14,
+			zesty_maple_slot_15
+		}
+	
+		mapleSlotsInner = {
+			zesty_maple_slot_21,
+			zesty_maple_slot_22
+		}
+	elseif context == zesty_maple_button then
 		-- Pull maple slots halfway in
 		api.setLockValue(zesty_maple_toggle1, 1, 1)
 		api.setLockValue(zesty_maple_toggle1_reset, 1, 1)
