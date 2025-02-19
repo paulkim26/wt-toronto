@@ -346,8 +346,9 @@ end
 
 if callType == LuaCallType.Unlock then
 	if context == zesty_init then
+
+		
 		-- Globals
-		moduleLoaded = false
 		powerRows = 8
 		powerColumns = 8
 		powerCells = {}
@@ -476,16 +477,14 @@ if callType == LuaCallType.Unlock then
 	elseif context == zesty_powerslot_remove then
 		api.setLockValue(zesty_sfx_connectoroff, 1, 1)
 		powerUpdate()
-	elseif context == zesty_show_module then
-		moduleLoaded = true
-	end	
+	end
 elseif callType == LuaCallType.Slot then
-	for _, powerSlot in ipairs(powerSlots) do
-		if context == powerSlot.element then
-			if moduleLoaded == true then
-				api.setLockValue(zesty_sfx_connectoron, 1, 1) -- Don't play sound until module is loaded
+	if powerSlots ~= nil then
+		for _, powerSlot in ipairs(powerSlots) do
+			if context == powerSlot.element then
+				api.setLockValue(zesty_sfx_connectoron, 1, 1)
+				powerUpdate()
 			end
-			powerUpdate()
 		end
 	end
 end

@@ -595,13 +595,15 @@ if callType == LuaCallType.Unlock then
 		updateCondos()
 		updateCondoRails(false)
 	elseif context == zesty_condo_update then
-		updateCondos()
-		--[[
-			Bug: this gets triggered twice when the item is slotted (here, and in LuaCallType.Slot).
-			It's not a huge deal, it just means it runs this function twice each time a person is slotted.
-			Not sure how to avoid this.
-			- Zesty
-		]]
+		if condos ~= nil then
+			updateCondos()
+			--[[
+				Bug: this gets triggered twice when the item is slotted (here, and in LuaCallType.Slot).
+				It's not a huge deal, it just means it runs this function twice each time a person is slotted.
+				Not sure how to avoid this.
+				- Zesty
+			]]
+		end
 	elseif context == zesty_condo_lid_open then
 		activate({
 			zesty_condo_pillars_parent,
@@ -615,10 +617,12 @@ if callType == LuaCallType.Unlock then
 		complete()
 	end
 elseif callType == LuaCallType.Slot then
-	for _, condoRow in ipairs(condos) do
-		for _, condo in ipairs(condoRow) do
-			if context == condo.slot then
-				updateCondos()
+	if condos ~= nil then
+		for _, condoRow in ipairs(condos) do
+			for _, condo in ipairs(condoRow) do
+				if context == condo.slot then
+					updateCondos()
+				end
 			end
 		end
 	end
