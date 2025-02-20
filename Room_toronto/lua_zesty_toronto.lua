@@ -4,40 +4,6 @@ function round(num)
     return math.floor(num + 0.5)
 end
 
---[[
-	Custom activator to programatically use.
-	Works by setting the activator's attributes on-demand and then enacting it.
-	Requires a spare visibility activator to be present in the room.
-
-	Parameters:
-		targets (element[]) - Array of element names.
-			Ex: { target1, target2 }
-		enable (bool) - Whether to enable or disable.
-		targetObject (bool) - Whether to target whole object.
-		targetRenderer (bool) - Whether to target object renderer.
-		targetCollider (bool) - Whether to target object collider.
-]]
-function activate(targets, enable, targetObject, targetRenderer, targetCollider)
-	if enable then
-		zesty_condo_activator.type = (enable and zesty_condo_activator.ActivatorType.enable) or zesty_condo_activator.ActivatorType.disable
-	else
-		zesty_condo_activator.type = zesty_condo_activator.ActivatorType.disable
-	end
-
-	zesty_condo_activator.targetObject = targetObject or true
-	zesty_condo_activator.targetRenderer = targetRenderer or false
-	zesty_condo_activator.targetCollider = targetCollider or false
-
-	-- Convert list of targets to game objects
-	local gameObjects = {}
-	for i, obj in ipairs(targets) do
-		gameObjects[i] = obj.gameObject
-	end
-	zesty_condo_activator.keys = gameObjects
-
-	api.toggleActivator(zesty_condo_activator)
-end
-
 -- Initialize gear angles + rotation speed
 function initGears()
 	gearRotationFactor = 0				-- Base factor that all gear rotation is based on
@@ -122,7 +88,7 @@ if callType == LuaCallType.Unlock then
 
 		initGears()
 		calcGearDegrees(0)
-		activate({zesty_elevator_obstacle2}, false, true) -- Hide this obstacle at start
+		api.toggleActivator(zesty_elevatorobs_hide) -- Hide this obstacle at start
 	end
 elseif callType == LuaCallType.Update then
 	if lastUpdateTime ~= nil then -- Don't run this if global vars are uninitialized
@@ -133,13 +99,13 @@ elseif callType == LuaCallType.Update then
 		if deltaSeconds >= deltaIntervalSeconds then
 			if calcGearDegrees(deltaSeconds) then
 				if not rotating then
-					activate({zesty_elevator_obstacle2}, true, true) -- Spawn elevator obstacle to prevent people clipping in and stealing trophy early
+					api.toggleActivator(zesty_elevatorobs_show) -- Spawn elevator obstacle to prevent people clipping in and stealing trophy early
 					rotating = true
 					--api.log("rotating...")
 				end
 			else
 				if rotating then
-					activate({zesty_elevator_obstacle2}, false, true)
+					api.toggleActivator(zesty_elevatorobs_hide)
 					rotating = false
 					--api.log("stopped.")
 				end

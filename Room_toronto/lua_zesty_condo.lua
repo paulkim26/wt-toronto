@@ -106,16 +106,20 @@ end
 	ScreenLight Constructor
 
 	Parameters:
-		light (element)
-		cover (element)
+		lightHide (element) - activator that hides the light
+		lightShow (element) - activator that shows the light
+		coverHide (element) - activator that hides the light cover
+		coverShow (element) - activator that shows the light cover
 ]]
 ScreenLight = {}
 ScreenLight.__index = ScreenLight
 
-function ScreenLight.new(light, cover)
+function ScreenLight.new(lightHide, lightShow, coverHide, coverShow)
 	local self = setmetatable({}, ScreenLight)
-	self.light = light
-	self.cover = cover
+	self.lightHide = lightHide
+	self.lightShow = lightShow
+	self.coverHide = coverHide
+	self.coverShow = coverShow
 	self.active = false
 	self:off()
 	return self
@@ -124,8 +128,8 @@ end
 function ScreenLight:on()
 	if not self.active then
 		self.active = true
-		activate({self.light}, true, true)
-		activate({self.cover}, false, true)
+		api.toggleActivator(self.lightShow)
+		api.toggleActivator(self.coverHide)
 		api.setLockValue(zesty_sfx_condolight, 1, 1)
 	end
 end
@@ -135,8 +139,8 @@ function ScreenLight:off()
 		api.setLockValue(zesty_sfx_condolight, 1, 1)
 	end
 	self.active = false
-	activate({self.light}, false, true)
-	activate({self.cover}, true, true)
+	api.toggleActivator(self.lightHide)
+	api.toggleActivator(self.coverShow)
 end
 
 -- Functions
@@ -257,11 +261,20 @@ function updateCondoRails(playSound)
 	end
 end
 
+-- Update the screen state to show which "man" is obscured/visible after a condo pillar is changed.	
 function updateScreen(screenIcons, perspective)
 	for y, row in ipairs(perspective) do
 		for x, cell in ipairs(row) do
 			local visible = perspective[y][x] == 1
-			activate({screenIcons[y][x]}, visible, false)
+			local activators = screenIcons[y][x]
+			local hide = activators[1]
+			local show = activators[2]
+
+			if visible then
+				api.toggleActivator(show)
+			else
+				api.toggleActivator(hide)
+			end
 		end
 	end
 
@@ -310,9 +323,7 @@ function complete()
 		return false
 	end
 
-	activate({
-		zesty_token_parent
-	}, true, true)
+	api.toggleActivator(zesty_condotoken_show)
 
 	local northWestCondo = condos[1][1]
 
@@ -339,40 +350,6 @@ function areTablesEqual(table1, table2)
     return true
 end
 
---[[
-	Custom activator to programatically use.
-	Works by setting the activator's attributes on-demand and then enacting it.
-	Requires a spare visibility activator to be present in the room.
-
-	Parameters:
-		targets (element[]) - Array of element names.
-			Ex: { target1, target2 }
-		enable (bool) - Whether to enable or disable.
-		targetObject (bool) - Whether to target whole object.
-		targetRenderer (bool) - Whether to target object renderer.
-		targetCollider (bool) - Whether to target object collider.
-]]
-function activate(targets, enable, targetObject, targetRenderer, targetCollider)
-	if enable then
-		zesty_condo_activator.type = (enable and zesty_condo_activator.ActivatorType.enable) or zesty_condo_activator.ActivatorType.disable
-	else
-		zesty_condo_activator.type = zesty_condo_activator.ActivatorType.disable
-	end
-
-	zesty_condo_activator.targetObject = targetObject or true
-	zesty_condo_activator.targetRenderer = targetRenderer or false
-	zesty_condo_activator.targetCollider = targetCollider or false
-
-	-- Convert list of targets to game objects
-	local gameObjects = {}
-	for i, obj in ipairs(targets) do
-		gameObjects[i] = obj.gameObject
-	end
-	zesty_condo_activator.keys = gameObjects
-
-	api.toggleActivator(zesty_condo_activator)
-end
-
 -- For debugging
 function printTable(table)
 	for y = 1, #table do
@@ -389,13 +366,10 @@ if callType == LuaCallType.Unlock then
 	if context == zesty_init then
 		win = false
 
-		activate({
-			zesty_condo_pillars_parent,
-			zesty_condo_screen_west,
-			zesty_condo_screen_south,
-			zesty_condo_screen_east,
-			zesty_token_parent
-		}, false, true) -- Hide pillars @ room start
+		api.toggleActivator(zesty_condopillars_hide)
+		api.toggleActivator(zesty_condoscreenw_hide)
+		api.toggleActivator(zesty_condoscreens_hide)
+		api.toggleActivator(zesty_condoscreene_hide)
 	
 		condos = {
 			{
@@ -480,55 +454,55 @@ if callType == LuaCallType.Unlock then
 	
 		condoScreenSouth = {
 			{
-				zesty_condo_screen_south_11,
-				zesty_condo_screen_south_12,
-				zesty_condo_screen_south_13,
+				{zesty_condomans11_hide, zesty_condomans11_show},
+				{zesty_condomans12_hide, zesty_condomans12_show},
+				{zesty_condomans13_hide, zesty_condomans13_show},
 			},
 			{
-				zesty_condo_screen_south_21,
-				zesty_condo_screen_south_22,
-				zesty_condo_screen_south_23,
+				{zesty_condomans21_hide, zesty_condomans21_show},
+				{zesty_condomans22_hide, zesty_condomans22_show},
+				{zesty_condomans23_hide, zesty_condomans23_show},
 			},
 			{
-				zesty_condo_screen_south_31,
-				zesty_condo_screen_south_32,
-				zesty_condo_screen_south_33,
+				{zesty_condomans31_hide, zesty_condomans31_show},
+				{zesty_condomans32_hide, zesty_condomans32_show},
+				{zesty_condomans33_hide, zesty_condomans33_show},
 			}
 		}
 	
 		condoScreenWest = {
 			{
-				zesty_condo_screen_west_11,
-				zesty_condo_screen_west_12,
-				zesty_condo_screen_west_13,
+				{zesty_condomanw11_hide, zesty_condomanw11_show},
+				{zesty_condomanw12_hide, zesty_condomanw12_show},
+				{zesty_condomanw13_hide, zesty_condomanw13_show},
 			},
 			{
-				zesty_condo_screen_west_21,
-				zesty_condo_screen_west_22,
-				zesty_condo_screen_west_23,
+				{zesty_condomanw21_hide, zesty_condomanw21_show},
+				{zesty_condomanw22_hide, zesty_condomanw22_show},
+				{zesty_condomanw23_hide, zesty_condomanw23_show},
 			},
 			{
-				zesty_condo_screen_west_31,
-				zesty_condo_screen_west_32,
-				zesty_condo_screen_west_33,
+				{zesty_condomanw31_hide, zesty_condomanw31_show},
+				{zesty_condomanw32_hide, zesty_condomanw32_show},
+				{zesty_condomanw33_hide, zesty_condomanw33_show},
 			}
 		}
 	
 		condoScreenEast = {
 			{
-				zesty_condo_screen_east_11,
-				zesty_condo_screen_east_12,
-				zesty_condo_screen_east_13,
+				{zesty_condomane11_hide, zesty_condomane11_show},
+				{zesty_condomane12_hide, zesty_condomane12_show},
+				{zesty_condomane13_hide, zesty_condomane13_show},
 			},
 			{
-				zesty_condo_screen_east_21,
-				zesty_condo_screen_east_22,
-				zesty_condo_screen_east_23,
+				{zesty_condomane21_hide, zesty_condomane21_show},
+				{zesty_condomane22_hide, zesty_condomane22_show},
+				{zesty_condomane23_hide, zesty_condomane23_show},
 			},
 			{
-				zesty_condo_screen_east_31,
-				zesty_condo_screen_east_32,
-				zesty_condo_screen_east_33,
+				{zesty_condomane31_hide, zesty_condomane31_show},
+				{zesty_condomane32_hide, zesty_condomane32_show},
+				{zesty_condomane33_hide, zesty_condomane33_show},
 			}
 		}
 	
@@ -588,9 +562,26 @@ if callType == LuaCallType.Unlock then
 			{ 0, 0, 1 },
 		}
 	
-		screenLightSouth = ScreenLight.new(zesty_condo_south_light, zesty_condo_south_lightcover)
-		screenLightWest = ScreenLight.new(zesty_condo_west_light, zesty_condo_west_lightcover)
-		screenLightEast = ScreenLight.new(zesty_condo_east_light, zesty_condo_east_lightcover)
+		screenLightSouth = ScreenLight.new(
+			zesty_condolights_hide,
+			zesty_condolights_show,
+			zesty_condolightcovers_hide,
+			zesty_condolightcovers_show
+		)
+
+		screenLightWest = ScreenLight.new(
+			zesty_condolightw_hide,
+			zesty_condolightw_show,
+			zesty_condolightcoverw_hide,
+			zesty_condolightcoverw_show
+		)
+
+		screenLightEast = ScreenLight.new(
+			zesty_condolighte_hide,
+			zesty_condolighte_show,
+			zesty_condolightcovere_hide,
+			zesty_condolightcovere_show
+		)
 		
 		updateCondos()
 		updateCondoRails(false)
@@ -605,14 +596,11 @@ if callType == LuaCallType.Unlock then
 			]]
 		end
 	elseif context == zesty_condo_lid_open then
-		activate({
-			zesty_condo_pillars_parent,
-			zesty_condo_screen_west,
-			zesty_condo_screen_south,
-			zesty_condo_screen_east
-		}, true, true)
-
-		activate({zesty_digit_3_parent}, false, true) -- Hide power display
+		api.toggleActivator(zesty_condopillars_show)
+		api.toggleActivator(zesty_condoscreenw_show)
+		api.toggleActivator(zesty_condoscreens_show)
+		api.toggleActivator(zesty_condoscreene_show)
+		api.toggleActivator(zesty_digit3_hide) -- Hide power display
 	elseif context == zesty_condo_complete then
 		complete()
 	end
